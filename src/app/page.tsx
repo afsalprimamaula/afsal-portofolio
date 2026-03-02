@@ -1,7 +1,8 @@
 // src/app/page.tsx
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
-import Projects from "@/components/sections/Projects"; // Tambahkan ini
+import Projects from "@/components/sections/Projects";
+import Contact from "@/components/sections/Contact"; // Import ini
 
 export default function Home() {
   return (
@@ -10,9 +11,8 @@ export default function Home() {
       
       <Hero />
       <About />
-      <Projects /> {/* Tambahkan ini */}
-      
-      {/* <Contact /> akan menyusul di langkah terakhir */}
+      <Projects />
+      <Contact /> {/* Tambahkan section Contact */}
     </div>
   );
 }

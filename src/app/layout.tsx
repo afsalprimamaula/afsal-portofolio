@@ -2,9 +2,10 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { ReactNode } from "react"; 
-import "./globals.css"; // Gunakan path relatif jika alias @ bermasalah
-import Navbar from "@/components/layout/Navbar"; // Pastikan file sudah dibuat
+import "@/app/globals.css";
+import Navbar from "@/components/layout/Navbar";
 import BottomNav from "@/components/layout/BottomNav";
+import Footer from "@/components/layout/Footer"; // Import Footer
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -14,7 +15,20 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "Afsal Prima Maula | V-Shape Developer",
-  description: "Portofolio Digital Luxury dengan Next.js 15",
+  description: "Portofolio Digital Luxury Afsal Prima Maula. Membangun pengalaman web yang mahal, interaktif, dan modern.",
+  openGraph: {
+    title: "Afsal Prima Maula | V-Shape Developer",
+    description: "Building Digital Luxury. Spesialis UI/UX dan Modern Web Development.",
+    url: "https://afsal.dev", // Ganti dengan domain asli Anda nanti
+    siteName: "Afsal Portfolio",
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Afsal Prima Maula | Portfolio",
+    description: "Building Digital Luxury.",
+  },
 };
 
 export default function RootLayout({
@@ -29,6 +43,7 @@ export default function RootLayout({
         <main className="relative min-h-screen pb-24 md:pb-0">
           {children}
         </main>
+        <Footer /> {/* Footer ditambahkan di sini */}
         <BottomNav />
       </body>
     </html>
