@@ -1,0 +1,1 @@
+// # Definisi tipe TypeScript
