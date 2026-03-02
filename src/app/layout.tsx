@@ -1,6 +1,8 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import "@/app/globals.css";
+import { ReactNode } from "react"; 
+import "./globals.css"; 
 
 // Konfigurasi Font Plus Jakarta Sans
 const jakarta = Plus_Jakarta_Sans({
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode; // 3. Gunakan ReactNode yang sudah diimport
 }) {
   return (
     <html lang="id" className="scroll-smooth">
