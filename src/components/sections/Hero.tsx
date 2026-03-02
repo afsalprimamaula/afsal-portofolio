@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Download, Mail } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
+import Image from "next/image"; // Pastikan ini di-import
 
 export default function Hero() {
   return (
@@ -20,10 +21,14 @@ export default function Hero() {
           className="relative group"
         >
           <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-3xl overflow-hidden border border-white/10 bg-forest-card shadow-2xl">
-             {/* Placeholder Foto */}
-             <div className="w-full h-full bg-forest-light flex items-center justify-center text-cream/20 italic">
-                Profile Photo
-             </div>
+             {/* UPDATE: Menggunakan Next.js Image Component */}
+             <Image 
+               src="/images/profile.jpeg"  // Pastikan file ada di public/images/profile.png
+               alt="Afsal Prima Maula"
+               fill // Agar gambar mengisi kotak parent-nya
+               className="object-cover" // Agar gambar tidak gepeng (crop otomatis)
+               priority // Prioritas loading tinggi karena ini elemen utama (LCP)
+             />
           </div>
           <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
              <Badge>Available for work</Badge>
@@ -49,8 +54,7 @@ export default function Hero() {
             className="text-5xl md:text-7xl lg:text-8xl font-bold text-cream leading-[1.1]"
           >
             IT Student <br />
-            {/* Gradient Text sekarang pasti jalan karena globals.css sudah benar */}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dim">Prima Group.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dim">Digital Luxury.</span>
           </motion.h1>
 
           <motion.p 
@@ -63,18 +67,19 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        {/* CTA Buttons - BERSIH TANPA !IMPORTANT */}
+        {/* CTA Buttons */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
-          {/* Cukup panggil variant="gold" */}
+          {/* Tombol Download CV - Variant Gold */}
           <Button variant="gold" size="lg">
             Download CV <Download size={18} />
           </Button>
 
+          {/* Tombol Pesan */}
           <Button 
             variant="outline" 
             size="lg"
