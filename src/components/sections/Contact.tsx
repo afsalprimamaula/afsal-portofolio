@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
-import { motion } from "framer-motion";
-import { Send, Mail, MapPin, MessageCircle, Github, Linkedin, Instagram } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion"; // Import AnimatePresence
+import { Send, Mail, MapPin, MessageCircle, Github, Linkedin, Instagram, CheckCircle2, XCircle, Loader2 } from "lucide-react"; // Tambah Icon Baru
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Link from "next/link";
@@ -10,14 +10,15 @@ import emailjs from '@emailjs/browser';
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   
-  // PERBAIKAN 1: Sesuaikan nama state dengan nama input yang dibutuhkan EmailJS
   const [formData, setFormData] = useState({ 
-    user_name: "",  // Awalnya "name", ubah jadi "user_name"
-    user_email: "", // Awalnya "email", ubah jadi "user_email"
+    user_name: "", 
+    user_email: "", 
     message: "" 
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // State baru untuk status notifikasi: 'idle' | 'success' | 'error'
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,6 +27,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setStatus("idle"); // Reset status saat mulai kirim
 
     if (formRef.current) {
       emailjs
@@ -37,15 +39,20 @@ export default function Contact() {
         )
         .then(
           (result) => {
-            // PERBAIKAN 2: Panggil user_name saat alert
-            alert(`Terima kasih, ${formData.user_name}! Pesan Anda berhasil dikirim.`);
             setFormData({ user_name: "", user_email: "", message: "" });
+            setStatus("success"); // Set status sukses
             setIsSubmitting(false);
+            
+            // Hilangkan notifikasi otomatis setelah 5 detik
+            setTimeout(() => setStatus("idle"), 5000);
           },
           (error) => {
             console.error(error);
-            alert("Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi atau hubungi via WhatsApp.");
+            setStatus("error"); // Set status error
             setIsSubmitting(false);
+            
+            // Hilangkan notifikasi otomatis setelah 5 detik
+            setTimeout(() => setStatus("idle"), 5000);
           }
         );
     }
@@ -93,7 +100,7 @@ export default function Contact() {
               <div>
                 <p className="text-xs text-cream/40 uppercase tracking-widest font-bold">WhatsApp</p>
                 <a 
-                  href="https://wa.me/6285603103375" 
+                  href="https://wa.me/6282119238506" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-cream font-medium hover:text-gold transition-colors"
@@ -145,22 +152,22 @@ export default function Contact() {
 
         </motion.div>
 
-        {/* Kolom Kanan: Form */}
+        {/* Kolom Kanan: Form dengan Notifikasi Keren */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
+          className="relative" // Relative agar notifikasi bisa absolute di dalamnya jika mau, tapi kita taruh di bawah form saja
         >
-          <Card className="p-8 border-white/10 bg-forest-card/50 backdrop-blur-xl shadow-2xl">
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+          <Card className="p-8 border-white/10 bg-forest-card/50 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="space-y-2">
                 <label htmlFor="user_name" className="text-sm font-bold text-cream/70">Name</label>
                 <input
                   required
                   type="text"
                   name="user_name"
-                  id="user_name" // Tambahkan ID agar label htmlFor berfungsi
-                  // PERBAIKAN 3: Value sekarang mengacu ke user_name
+                  id="user_name"
                   value={formData.user_name} 
                   onChange={handleChange}
                   placeholder="John Doe"
@@ -174,8 +181,7 @@ export default function Contact() {
                   required
                   type="email"
                   name="user_email"
-                  id="user_email" // Tambahkan ID agar label htmlFor berfungsi
-                  // PERBAIKAN 4: Value sekarang mengacu ke user_email
+                  id="user_email"
                   value={formData.user_email}
                   onChange={handleChange}
                   placeholder="john@example.com"
@@ -203,10 +209,65 @@ export default function Contact() {
                 className="w-full py-4 text-base font-bold shadow-lg shadow-gold/10"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Sending..." : "Send Message"} 
-                {!isSubmitting && <Send size={18} />}
+                {isSubmitting ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 className="animate-spin" size={18} /> Sending...
+                  </span>
+                ) : (
+                  <>Send Message <Send size={18} /></>
+                )} 
               </Button>
             </form>
+
+            {/* AREA NOTIFIKASI (TOAST) */}
+            <AnimatePresence>
+              {status === "success" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute inset-0 z-20 flex items-center justify-center bg-forest-main/95 backdrop-blur-sm rounded-2xl"
+                >
+                  <div className="text-center p-6">
+                    <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4 text-gold border border-gold/30">
+                      <CheckCircle2 size={32} />
+                    </div>
+                    <h3 className="text-xl font-bold text-cream mb-2">Message Sent!</h3>
+                    <p className="text-cream/60 text-sm">Terima kasih telah menghubungi. Saya akan membalas secepatnya.</p>
+                    <button 
+                      onClick={() => setStatus("idle")}
+                      className="mt-6 text-xs font-bold text-gold hover:underline uppercase tracking-wider"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {status === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute inset-0 z-20 flex items-center justify-center bg-red-900/95 backdrop-blur-sm rounded-2xl"
+                >
+                  <div className="text-center p-6">
+                    <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4 text-red-400 border border-red-500/30">
+                      <XCircle size={32} />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">Failed to Send</h3>
+                    <p className="text-white/60 text-sm">Terjadi kesalahan. Silakan coba lagi atau hubungi via WhatsApp.</p>
+                    <button 
+                      onClick={() => setStatus("idle")}
+                      className="mt-6 text-xs font-bold text-white/80 hover:text-white hover:underline uppercase tracking-wider"
+                    >
+                      Try Again
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
           </Card>
         </motion.div>
       </div>
