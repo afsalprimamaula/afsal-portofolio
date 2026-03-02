@@ -1,10 +1,10 @@
 "use client";
 
-import { motion, Variants } from "framer-motion"; // Update: Import Variants
+import { motion, Variants } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { GraduationCap, Briefcase, Calendar, Code2, Brain, Wrench } from "lucide-react";
+import { GraduationCap, Briefcase, Calendar, Code2, Cpu, Wrench } from "lucide-react";
 
-// --- ANIMATION VARIANTS (FIX: Ditambahkan tipe ': Variants') ---
+// --- ANIMATION VARIANTS ---
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { 
@@ -27,16 +27,16 @@ const staggerContainer: Variants = {
 // --- DATA DEFINITION ---
 const educationData = [
   {
-    institution: "Universitas Pasundan",
+    institution: "Universitas (Isi Nama Kampus)",
     degree: "S1 Teknik Informatika",
-    year: "2024 - Sekarang",
+    year: "2023 - Sekarang",
     description: "Fokus pada Software Engineering, Algoritma, dan Artificial Intelligence.",
   },
   {
-    institution: "SMA Negeri 1 Jalancagak",
-    degree: "Jurusan IPS",
-    year: "2021 - 2024",
-    description: "Dasar-dasar ekonomi, sejarah, dan pengenalan teknologi informasi serta pemrograman dasar.",
+    institution: "SMA (Isi Nama Sekolah)",
+    degree: "Jurusan IPA / RPL",
+    year: "2020 - 2023",
+    description: "Dasar-dasar logika pemrograman dan sains.",
   },
 ];
 
@@ -44,27 +44,35 @@ const experienceData = [
   {
     role: "Freelance Web Developer",
     company: "Remote / Self-Employed",
-    year: "2025 - Sekarang",
+    year: "2024 - Sekarang",
     description: "Membangun website responsif dan aplikasi web modern untuk klien lokal dan internasional.",
   },
   {
-    role: "Frontend Web Developer",
-    company: "Self-Employed",
-    year: "2025",
-    description: "Membangun website responsif dan aplikasi web modern untuk tugas sekolah dan proyek pribadi.",
-  },
-  {
-    role: "CEO & FOUNDER Gedoy Camping",
-    company: "Personal Company",
-    year: "2025 - Sekarang",
-    description: "Mengelola pariwisata dengan fokus pada pengalaman unik dan layanan berkualitas tinggi.",
+    role: "Crypto Trader & Analyst",
+    company: "Personal Portfolio",
+    year: "2023 - Sekarang",
+    description: "Mengelola portofolio aset digital dengan analisis teknikal dan fundamental (On-chain analysis).",
   },
 ];
 
 const skillsData = {
+  // BAGIAN 1: Web Development (TETAP)
   webDev: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "Framer Motion"],
-  ai: ["Python", "Gemini API", "OpenAI API", "TensorFlow Basic", "Data Analysis"],
-  tools: ["Git & GitHub", "VS Code", "Figma", "Postman", "Vercel", "Linux", "Docker (Basic)", "API", "Gemini API", "OpenAI API"],
+  
+  // BAGIAN 2: Hard Skills (MENGGANTIKAN AI)
+  hardSkills: [
+    "Prompt Engineering",
+    "Network Infrastructure",
+    "Basic Penetration Testing",
+    "Graphic Design",
+    "Project Management",
+    "Research",
+    "Team Management",
+    "Problem Solving"
+  ],
+
+  // BAGIAN 3: Tools (TETAP)
+  tools: ["Git & GitHub", "VS Code", "Figma", "Postman", "Vercel", "Linux"],
 };
 
 export default function About() {
@@ -94,7 +102,7 @@ export default function About() {
         </motion.div>
 
 
-        {/* === BAGIAN 2: EDUCATION & EXPERIENCE (TIMELINE STYLE) === */}
+        {/* === BAGIAN 2: EDUCATION & EXPERIENCE === */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           
           {/* Kolom Kiri: Education */}
@@ -115,7 +123,6 @@ export default function About() {
               {educationData.map((item, index) => (
                 <motion.div key={index} variants={fadeInUp} className="relative group">
                   <span className="absolute -left-[39px] top-1.5 h-4 w-4 rounded-full bg-forest-main border-2 border-white/20 group-hover:border-gold group-hover:bg-gold transition-all duration-300" />
-                  
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
                     <h4 className="text-lg font-bold text-cream group-hover:text-gold transition-colors">{item.institution}</h4>
                     <span className="text-xs font-bold text-gold bg-gold/10 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0 flex items-center gap-1">
@@ -147,7 +154,6 @@ export default function About() {
               {experienceData.map((item, index) => (
                 <motion.div key={index} variants={fadeInUp} className="relative group">
                   <span className="absolute -left-[39px] top-1.5 h-4 w-4 rounded-full bg-forest-main border-2 border-white/20 group-hover:border-gold group-hover:bg-gold transition-all duration-300" />
-                  
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
                     <h4 className="text-lg font-bold text-cream group-hover:text-gold transition-colors">{item.role}</h4>
                     <span className="text-xs font-bold text-gold bg-gold/10 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0 flex items-center gap-1">
@@ -164,7 +170,7 @@ export default function About() {
         </div>
 
 
-        {/* === BAGIAN 3: TECH ECOSYSTEM (SKILLS) === */}
+        {/* === BAGIAN 3: TECH ECOSYSTEM (KEMBALI KE 3 KOLOM) === */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -174,13 +180,32 @@ export default function About() {
         >
           <div className="text-center mb-12">
             <h3 className="text-2xl font-bold text-cream mb-2">Tech Ecosystem</h3>
-            <p className="text-cream/50 text-sm">Teknologi dan alat yang saya gunakan untuk berinovasi</p>
+            <p className="text-cream/50 text-sm">Teknologi dan keahlian yang saya kuasai</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <SkillCategory title="Web Development" icon={<Code2 size={20} />} skills={skillsData.webDev} />
-            <SkillCategory title="Artificial Intelligence" icon={<Brain size={20} />} skills={skillsData.ai} />
-            <SkillCategory title="Tools & Others" icon={<Wrench size={20} />} skills={skillsData.tools} />
+            
+            {/* Category 1: Web Development (TETAP) */}
+            <SkillCategory 
+              title="Web Development" 
+              icon={<Code2 size={20} />} 
+              skills={skillsData.webDev} 
+            />
+
+            {/* Category 2: Hard Skills (BARU - MENGGANTIKAN AI) */}
+            <SkillCategory 
+              title="Hard Skills" 
+              icon={<Cpu size={20} />} 
+              skills={skillsData.hardSkills} 
+            />
+
+            {/* Category 3: Tools & Others (TETAP) */}
+            <SkillCategory 
+              title="Tools & Others" 
+              icon={<Wrench size={20} />} 
+              skills={skillsData.tools} 
+            />
+
           </div>
         </motion.div>
 
