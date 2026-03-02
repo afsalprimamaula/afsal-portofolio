@@ -1,10 +1,11 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { Download, Mail, Github, Linkedin, Instagram } from "lucide-react"; // Import Icon Sosmed
+import { Download, Mail } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
 import Image from "next/image";
-import Link from "next/link"; // Jangan lupa import Link
+import Link from "next/link"; // Import Link untuk navigasi
 
 export default function Hero() {
   return (
@@ -23,7 +24,7 @@ export default function Hero() {
         >
           <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-3xl overflow-hidden border border-white/10 bg-forest-card shadow-2xl">
              <Image 
-               src="/images/profile.jpeg" 
+               src="/images/profile.jpeg" // Pastikan nama file sesuai (jpeg/png)
                alt="Afsal Prima Maula"
                fill
                className="object-cover"
@@ -74,56 +75,25 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
-          {/* Tombol Download CV - Variant Gold */}
-          <Button variant="gold" size="lg">
-            Download CV <Download size={18} />
-          </Button>
+          {/* 1. Tombol Download CV (Menggunakan tag <a> agar file terunduh) */}
+          {/* Pastikan file 'cv-afsal.pdf' ada di folder public */}
+          <a href="/cv-afsal.pdf" download="CV_Afsal_Prima_Maula.pdf">
+            <Button variant="gold" size="lg">
+              Download CV <Download size={18} />
+            </Button>
+          </a>
 
-          {/* Tombol Pesan */}
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="hover:border-gold hover:text-gold transition-colors duration-300"
-          >
-            <Mail size={18} />
-          </Button>
-        </motion.div>
-
-        {/* SOCIAL MEDIA ICONS (BARU) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="flex items-center gap-8 mt-12 pt-8 border-t border-white/5 w-full max-w-xs justify-center"
-        >
-          {/* GitHub */}
-          <Link 
-            href="https://github.com/afsalprimamaula" // Ganti dengan link GitHub Anda
-            target="_blank"
-            className="text-cream/40 hover:text-gold transition-all duration-300 hover:scale-110 hover:-translate-y-1"
-          >
-            <Github size={24} />
-          </Link>
-
-          {/* LinkedIn */}
-          <Link 
-            href="https://linkedin.com/in/afsalprimamaula" // Ganti dengan link LinkedIn Anda
-            target="_blank"
-            className="text-cream/40 hover:text-gold transition-all duration-300 hover:scale-110 hover:-translate-y-1"
-          >
-            <Linkedin size={24} />
-          </Link>
-
-          {/* Instagram */}
-          <Link 
-            href="https://www.instagram.com/pmafsaal.e?igsh=MXc0cXlmejdqYnU0eg==" // Ganti dengan link Instagram Anda
-            target="_blank"
-            className="text-cream/40 hover:text-gold transition-all duration-300 hover:scale-110 hover:-translate-y-1"
-          >
-            <Instagram size={24} />
+          {/* 2. Tombol Pesan (Menggunakan Link ke #contact) */}
+          <Link href="#contact" scroll={true}>
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="hover:border-gold hover:text-gold transition-colors duration-300"
+            >
+              <Mail size={18} />
+            </Button>
           </Link>
         </motion.div>
-
       </div>
     </section>
   );
