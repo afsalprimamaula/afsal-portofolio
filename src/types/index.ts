@@ -1,6 +1,3 @@
-// # Definisi tipe TypeScript
-
-// src/types/index.ts
 export interface Project {
   id: string;
   title: string;
