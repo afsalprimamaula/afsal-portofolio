@@ -2,8 +2,8 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { ReactNode } from "react"; 
-import "@/app/globals.css"; // Menggunakan alias @ yang sudah diperbaiki
-import Navbar from "@/components/layout/Navbar";
+import "./globals.css"; // Gunakan path relatif jika alias @ bermasalah
+import Navbar from "@/components/layout/Navbar"; // Pastikan file sudah dibuat
 import BottomNav from "@/components/layout/BottomNav";
 
 const jakarta = Plus_Jakarta_Sans({
