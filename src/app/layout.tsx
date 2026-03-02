@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { ReactNode } from "react"; 
-import "@/app/globals.css";
+import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import BottomNav from "@/components/layout/BottomNav";
 import Footer from "@/components/layout/Footer"; // Import Footer

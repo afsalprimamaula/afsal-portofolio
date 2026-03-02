@@ -1,25 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --background: #2D3A30;
   --foreground: #FDFBF7;
 }
 
+/* @theme adalah cara baru Tailwind v4 untuk setting font/warna, tapi untuk sekarang kita pakai CSS variable dulu biar cepat */
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  /* Set background default langsung ke Forest Main */
-  background-color: #2D3A30; 
-  color: #FDFBF7;
+  background-color: var(--background);
+  color: var(--foreground);
   overflow-x: hidden;
 }
 
+/* Layer utilities cara baru */
 @layer utilities {
-  /* Utility untuk kartu transparan mewah */
   .glass-card {
     background: rgba(58, 75, 61, 0.4);
     backdrop-filter: blur(12px);
