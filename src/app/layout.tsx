@@ -2,9 +2,10 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { ReactNode } from "react"; 
-import "./globals.css"; 
+import "@/app/globals.css"; // Menggunakan alias @ yang sudah diperbaiki
+import Navbar from "@/components/layout/Navbar";
+import BottomNav from "@/components/layout/BottomNav";
 
-// Konfigurasi Font Plus Jakarta Sans
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
@@ -19,15 +20,16 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: ReactNode; // 3. Gunakan ReactNode yang sudah diimport
+  children: ReactNode;
 }) {
   return (
     <html lang="id" className="scroll-smooth">
       <body className={`${jakarta.variable} font-sans antialiased bg-forest-main text-cream`}>
-        {/* Konten utama website */}
-        <main className="relative min-h-screen">
+        <Navbar />
+        <main className="relative min-h-screen pb-24 md:pb-0">
           {children}
         </main>
+        <BottomNav />
       </body>
     </html>
   );
