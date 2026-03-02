@@ -9,25 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Palet Digital Luxury (Deep Forest & Gold)
         forest: {
-          main: "#2D3A30", // Background Utama
-          card: "#3A4B3D", // Warna Kartu/Surface
-          light: "#4B5F50", // Border atau Hover
+          main: "#2D3A30",
+          light: "#3A4B3D",
+          card: "#344338",
         },
+        // UPDATE: Warna Gold
         gold: {
-          main: "#D4AF37", // Metallic Gold
-          dim: "#C5A028",  // Hover Gold
-          light: "#EACF70", // Highlight
+          DEFAULT: "#D4AF37", // Default gold (untuk bg-gold/text-gold)
+          main: "#D4AF37",
+          light: "#E5C558",
+          dim: "#B08D26",
         },
-        cream: {
-          DEFAULT: "#FDFBF7", // Teks Utama
-          muted: "#D1D6D3",   // Teks Sekunder
-        }
+        cream: "#FDFBF7",
       },
       fontFamily: {
-        // Kita hubungkan dengan variable CSS yang ada di layout.tsx
-        sans: ["var(--font-jakarta)", "sans-serif"],
+        sans: ["var(--font-jakarta)"],
       },
     },
   },
