@@ -1,11 +1,26 @@
 @import "tailwindcss";
 
-:root {
-  --background: #2D3A30;
-  --foreground: #FDFBF7;
+@theme {
+  /* Mendaftarkan Warna Custom secara Global */
+  --color-gold: #D4AF37;
+  --color-gold-main: #D4AF37;
+  --color-gold-light: #E5C558;
+  --color-gold-dim: #B08D26;
+
+  --color-forest-main: #2D3A30;
+  --color-forest-light: #3A4B3D;
+  --color-forest-card: #344338;
+
+  --color-cream: #FDFBF7;
+
+  /* Font */
+  --font-jakarta: var(--font-jakarta);
 }
 
-/* @theme adalah cara baru Tailwind v4 untuk setting font/warna, tapi untuk sekarang kita pakai CSS variable dulu biar cepat */
+:root {
+  --background: var(--color-forest-main);
+  --foreground: var(--color-cream);
+}
 
 html {
   scroll-behavior: smooth;
@@ -17,7 +32,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Layer utilities cara baru */
 @layer utilities {
   .glass-card {
     background: rgba(58, 75, 61, 0.4);

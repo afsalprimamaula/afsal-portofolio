@@ -22,18 +22,19 @@ export default function Navbar() {
             <Link
               key={item.name}
               href={item.path}
-              // UPDATE: Menambahkan hover:text-gold
-              className="text-sm font-medium text-cream/70 hover:text-gold transition-colors relative group"
+              // PERBAIKAN: Gunakan 'hover:!text-gold' agar lebih prioritas
+              className="text-sm font-medium text-cream/70 hover:!text-gold transition-colors relative group"
             >
               {item.name}
+              {/* Garis bawah animasi */}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
           
-          {/* UPDATE: Tombol Let's Talk jadi Solid Gold */}
+          {/* Tombol Let's Talk */}
           <Link 
             href="#contact" 
-            className="ml-4 px-6 py-2.5 rounded-full bg-gold text-forest-main text-xs font-bold hover:bg-gold/90 transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+            className="ml-4 px-6 py-2.5 rounded-full bg-gold text-forest-main text-xs font-bold hover:bg-gold-dim transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)]"
           >
             LET'S TALK
           </Link>

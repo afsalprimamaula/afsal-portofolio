@@ -1,11 +1,9 @@
-// # Tombol Custom (Gold/Outline)
-
-import { ReactNode, ButtonHTMLAttributes } from "react";
-import { cn } from "@/lib/utils"; // Pastikan lib/utils.ts sudah ada
+import { ButtonHTMLAttributes, ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: "primary" | "outline" | "ghost";
+  variant?: "primary" | "outline" | "ghost" | "gold"; 
   size?: "sm" | "md" | "lg";
   className?: string;
 }
@@ -17,14 +15,19 @@ export default function Button({
   className,
   ...props
 }: ButtonProps) {
-  // Definisi varian warna sesuai tema Luxury
+  
   const variants = {
-    primary: "bg-gold-main text-forest-main hover:bg-gold-dim",
-    outline: "border border-gold-main/30 text-gold-main hover:bg-gold-main/10",
-    ghost: "text-cream/70 hover:text-gold-main hover:bg-white/5",
+    // Primary sekarang DEFAULT GOLD. 
+    // Jika tombol Anda masih hijau, berarti file ini BELUM terupdate.
+    primary: "bg-gold text-forest-main hover:bg-gold-dim hover:shadow-lg transition-transform hover:-translate-y-0.5",
+    
+    // Variant khusus Gold (sama dengan primary, untuk pemaksaan jika perlu)
+    gold: "bg-gold text-forest-main hover:bg-gold-dim hover:shadow-lg transition-transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(212,175,55,0.3)]",
+    
+    outline: "border border-gold/30 text-gold hover:bg-gold/10",
+    ghost: "text-cream/70 hover:text-gold hover:bg-white/5",
   };
 
-  // Definisi ukuran tombol
   const sizes = {
     sm: "px-4 py-2 text-xs",
     md: "px-6 py-3 text-sm",
@@ -34,7 +37,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        "rounded-full font-bold transition-all active:scale-95 flex items-center justify-center gap-2",
+        "rounded-full font-bold transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer",
         variants[variant],
         sizes[size],
         className
