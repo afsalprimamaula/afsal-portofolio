@@ -141,7 +141,7 @@ export default function Contact() {
                 <Linkedin size={24} />
               </Link>
               <Link 
-                href="https://instagram.com/afsalprimamaula" 
+                href="https://www.instagram.com/pmafsaal.e?igsh=MXc0cXlmejdqYnU0eg==" 
                 target="_blank"
                 className="text-cream/60 hover:text-gold hover:scale-110 transition-all duration-300"
               >
