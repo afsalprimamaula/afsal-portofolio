@@ -27,16 +27,16 @@ const staggerContainer: Variants = {
 // --- DATA DEFINITION ---
 const educationData = [
   {
-    institution: "Universitas (Isi Nama Kampus)",
+    institution: "Universitas Pasundan",
     degree: "S1 Teknik Informatika",
-    year: "2023 - Sekarang",
+    year: "2024 - Sekarang",
     description: "Fokus pada Software Engineering, Algoritma, dan Artificial Intelligence.",
   },
   {
-    institution: "SMA (Isi Nama Sekolah)",
-    degree: "Jurusan IPA / RPL",
-    year: "2020 - 2023",
-    description: "Dasar-dasar logika pemrograman dan sains.",
+    institution: "SMA Negeri 1 Jalancagak",
+    degree: "Jurusan IPS",
+    year: "2021 - 2024",
+    description: "Dasar-dasar Ekonomi, Geografi, dan Sejarah.",
   },
 ];
 
@@ -48,10 +48,16 @@ const experienceData = [
     description: "Membangun website responsif dan aplikasi web modern untuk klien lokal dan internasional.",
   },
   {
-    role: "Crypto Trader & Analyst",
-    company: "Personal Portfolio",
-    year: "2023 - Sekarang",
-    description: "Mengelola portofolio aset digital dengan analisis teknikal dan fundamental (On-chain analysis).",
+    role: "Frontend Developer",
+    company: "Self-Employed",
+    year: "2025 - Sekarang",
+    description: "Membangun website responsif dan aplikasi web modern untuk tugas kuliah dan proyek pribadi menggunakan Next.js, React, dan Tailwind CSS.",
+  },
+  {
+    role: "CEO & Founder Gedoy Camping",
+    company: "Personal Company",
+    year: "2025 - Sekarang",
+    description: "Mengelola pariwisata dengan fokus pada pengalaman unik dan layanan berkualitas tinggi.",
   },
 ];
 
